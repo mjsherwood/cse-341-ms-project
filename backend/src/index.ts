@@ -1,4 +1,5 @@
 import express from 'express';
+import './database';  // Import the database file to establish the connection
 
 const app = express();
 const PORT = process.env.PORT || 4000;
