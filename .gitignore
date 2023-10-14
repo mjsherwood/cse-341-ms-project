@@ -1,3 +1,22 @@
 # .gitignore
+
+# Dependency directories
 node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# Build directories
+backend/dist/
+frontend/dist/
+dist/
+
+# Environment variables
 .env
+
+# Yarn Plug'n'Play files
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+

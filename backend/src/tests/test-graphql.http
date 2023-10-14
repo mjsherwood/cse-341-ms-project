@@ -7,7 +7,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "{ recipe(id: \"<RECIPE_ID>\") { name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
+  "query": "{ recipe(id: \"6529e0aed3fb818c8bc06ad9\") { name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
 }
 
 ### Get all recipes

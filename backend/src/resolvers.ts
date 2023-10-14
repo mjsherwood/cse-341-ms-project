@@ -1,4 +1,5 @@
 import { getDb } from './database';  // Update this with the actual path to your database file
+import { ObjectId } from 'mongodb';
 
 const resolvers = {
   Query: {
@@ -10,6 +11,20 @@ const resolvers = {
       } catch (error) {
         console.error('Error fetching recipes:', error);
         throw new Error('Error fetching recipes');
+      }
+    },
+    recipe: async (_: any, args: any) => {
+      try {
+        const db = getDb();
+        const recipe = await db.collection('recipes').findOne({ _id: new ObjectId(args.id) });
+        if (!recipe) {
+          console.error('Recipe not found');
+          throw new Error('Recipe not found');
+        }
+        return recipe;
+      } catch (error) {
+        console.error('Error fetching recipe:', error);
+        throw new Error('Error fetching recipe');
       }
     },
   },
@@ -37,11 +52,11 @@ const resolvers = {
       try {
         const db = getDb();
         const result = await db.collection('recipes').findOneAndUpdate(
-          { _id: args.id },  // filter
+          { _id: new ObjectId(args.id) },  // filter
           { $set: args },  // update
           { returnDocument: 'after' }  // options
         );
-        if (!result.value) {
+        if (!result || !result.value) { // Add null check for result here
           throw new Error('Recipe not found');
         }
         return result.value;
@@ -54,8 +69,8 @@ const resolvers = {
     deleteRecipe: async (_: any, args: any) => {
       try {
         const db = getDb();
-        const result = await db.collection('recipes').findOneAndDelete({ _id: args.id });
-        if (!result.value) {
+        const result = await db.collection('recipes').findOneAndDelete({ _id: new ObjectId(args.id) });
+        if (!result || !result.value) { // Add null check for result here
           throw new Error('Recipe not found');
         }
         return result.value;

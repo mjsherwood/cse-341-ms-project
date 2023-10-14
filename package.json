@@ -1,5 +1,13 @@
 {
-  "dependencies": {
-    "mongodb": "^6.1.0"
+  "name": "recipe-app",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "start": "yarn workspace backend start && yarn workspace frontend start",
+    "build": "yarn workspace backend build && yarn workspace frontend build"
   }
 }

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = require("./database"); // Update this with the actual path to your database file
+const mongodb_1 = require("mongodb");
 const resolvers = {
     Query: {
         recipes: async () => {
@@ -12,6 +13,21 @@ const resolvers = {
             catch (error) {
                 console.error('Error fetching recipes:', error);
                 throw new Error('Error fetching recipes');
+            }
+        },
+        recipe: async (_, args) => {
+            try {
+                const db = (0, database_1.getDb)();
+                const recipe = await db.collection('recipes').findOne({ _id: new mongodb_1.ObjectId(args.id) });
+                if (!recipe) {
+                    console.error('Recipe not found');
+                    throw new Error('Recipe not found');
+                }
+                return recipe;
+            }
+            catch (error) {
+                console.error('Error fetching recipe:', error);
+                throw new Error('Error fetching recipe');
             }
         },
     },
@@ -35,11 +51,11 @@ const resolvers = {
         updateRecipe: async (_, args) => {
             try {
                 const db = (0, database_1.getDb)();
-                const result = await db.collection('recipes').findOneAndUpdate({ _id: args.id }, // filter
+                const result = await db.collection('recipes').findOneAndUpdate({ _id: new mongodb_1.ObjectId(args.id) }, // filter
                 { $set: args }, // update
                 { returnDocument: 'after' } // options
                 );
-                if (!result.value) {
+                if (!result || !result.value) { // Add null check for result here
                     throw new Error('Recipe not found');
                 }
                 return result.value;
@@ -52,8 +68,8 @@ const resolvers = {
         deleteRecipe: async (_, args) => {
             try {
                 const db = (0, database_1.getDb)();
-                const result = await db.collection('recipes').findOneAndDelete({ _id: args.id });
-                if (!result.value) {
+                const result = await db.collection('recipes').findOneAndDelete({ _id: new mongodb_1.ObjectId(args.id) });
+                if (!result || !result.value) { // Add null check for result here
                     throw new Error('Recipe not found');
                 }
                 return result.value;
