@@ -41,3 +41,22 @@ Content-Type: application/json
 {
   "query": "mutation { deleteRecipe(id: \"652a1ec6307856a4dbe9f414\") { name } }"
 }
+
+### Production Query Examples
+
+### Get a single recipe
+POST https://cse-341-ms-project.onrender.com/graphql
+Content-Type: application/json
+
+{
+  "query": "{ recipe(id: \"6529e0aed3fb818c8bc06ad9\") { name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
+}
+
+### Get all recipes
+POST https://cse-341-ms-project.onrender.com/graphql
+Content-Type: application/json
+
+{
+  "query": "{ recipes { name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
+}
+
