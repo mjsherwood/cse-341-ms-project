@@ -51,17 +51,27 @@ const resolvers = {
     updateRecipe: async (_: any, args: any) => {
       try {
         const db = getDb();
+        console.log('Args:', args);
+    
+        const updateArgs = { ...args };
+        delete updateArgs.id;  // Remove the id from the arguments as we don't want to update it
+    
         const result = await db.collection('recipes').findOneAndUpdate(
-          { _id: new ObjectId(args.id) },  // filter
-          { $set: args },  // update
-          { returnDocument: 'after' }  // options
+          { _id: new ObjectId(args.id) },
+          { $set: updateArgs },
+          { returnDocument: 'after' }
         );
-        if (!result || !result.value) { // Add null check for result here
+    
+        console.log('Result:', result);
+    
+        if (result && !result.value) {
+          console.log(`Recipe not found for ID: ${args.id}`);
           throw new Error('Recipe not found');
         }
+    
         return result.value;
       } catch (error) {
-        console.error('Error updating recipe:', error);
+        console.log('Specific error updating recipe:', error);
         throw new Error('Error updating recipe');
       }
     },
@@ -69,10 +79,18 @@ const resolvers = {
     deleteRecipe: async (_: any, args: any) => {
       try {
         const db = getDb();
-        const result = await db.collection('recipes').findOneAndDelete({ _id: new ObjectId(args.id) });
-        if (!result || !result.value) { // Add null check for result here
+        const recipeId = new ObjectId(args.id);
+        console.log(`Trying to delete recipe with ID: ${args.id}`);
+    
+        // Log details of the recipe if it exists
+        const existingRecipe = await db.collection('recipes').findOne({ _id: recipeId });
+        console.log('Existing recipe:', existingRecipe);
+    
+        const result = await db.collection('recipes').findOneAndDelete({ _id: recipeId });
+        if (!result || !result.value) {
           throw new Error('Recipe not found');
         }
+        console.log('Recipe deleted:', result.value);
         return result.value;
       } catch (error) {
         console.error('Error deleting recipe:', error);

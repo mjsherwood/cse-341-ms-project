@@ -51,18 +51,21 @@ const resolvers = {
         updateRecipe: async (_, args) => {
             try {
                 const db = (0, database_1.getDb)();
-                const result = await db.collection('recipes').findOneAndUpdate({ _id: new mongodb_1.ObjectId(args.id) }, // filter
-                { $set: args }, // update
-                { returnDocument: 'after' } // options
-                );
-                if (!result || !result.value) { // Add null check for result here
+                const result = await db.collection('recipes').findOneAndUpdate({ _id: new mongodb_1.ObjectId(args.id) }, { $set: args }, { returnDocument: 'after' });
+                if (!result || !result.value) { // Check if result is not null here
+                    console.error('Recipe not found for ID:', args.id);
                     throw new Error('Recipe not found');
                 }
                 return result.value;
             }
             catch (error) {
-                console.error('Error updating recipe:', error);
-                throw new Error('Error updating recipe');
+                console.error('Specific error updating recipe:', error);
+                if (error instanceof Error) {
+                    throw new Error('Error updating recipe: ' + error.message);
+                }
+                else {
+                    throw new Error('An unexpected error occurred while updating the recipe.');
+                }
             }
         },
         deleteRecipe: async (_, args) => {

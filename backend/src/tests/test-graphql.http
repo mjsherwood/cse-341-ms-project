@@ -23,7 +23,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { addRecipe(name: \"Pancakes\", ingredients: [\"Flour\", \"Milk\", \"Eggs\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\") { name } }"
+  "query": "mutation { addRecipe(name: \"Test7\", ingredients: [\"Flour\", \"Milk\", \"Eggs\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\") { name } }"
 }
 
 ### Update a recipe
@@ -31,7 +31,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { updateRecipe(id: \"<RECIPE_ID>\", name: \"Pancakes\", ingredients: [\"Flour\", \"Milk\", \"Eggs\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\") { name } }"
+  "query": "mutation { updateRecipe(id: \"6529e0aed3fb818c8bc06ad9\", name: \"Pancakes\", ingredients: [\"Flour\", \"Water\", \"Eggs\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\") { name } }"
 }
 
 ### Delete a recipe
@@ -39,6 +39,5 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { deleteRecipe(id: \"<RECIPE_ID>\") { name } }"
+  "query": "mutation { deleteRecipe(id: \"652a1ec6307856a4dbe9f414\") { name } }"
 }
-```
