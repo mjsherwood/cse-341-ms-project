@@ -13,7 +13,7 @@ if (!MONGO_URI) {
     console.error('Missing MONGODB_URI');
 }
 else {
-    console.log('Connecting to MongoDB at', MONGO_URI);
+    console.log('Connecting to MongoDB');
 }
 const initDb = async () => {
     if (db) {
