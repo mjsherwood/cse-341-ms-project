@@ -3,18 +3,40 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getDb = exports.initDb = void 0;
+const mongodb_1 = require("mongodb");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const mongoose_1 = __importDefault(require("mongoose"));
-// MongoDB connection
+let db;
 const MONGO_URI = process.env.MONGODB_URI || '';
-mongoose_1.default.connect(MONGO_URI)
-    .then(() => console.log('Connected to MongoDB'))
-    .catch((error) => console.error('Error connecting to MongoDB:', error));
-// Handling MongoDB connection events
-const db = mongoose_1.default.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => {
-    console.log('MongoDB connected successfully');
-});
-exports.default = db;
+if (!MONGO_URI) {
+    console.error('Missing MONGODB_URI');
+}
+else {
+    console.log('Connecting to MongoDB at', MONGO_URI);
+}
+const initDb = async () => {
+    if (db) {
+        console.log('DB is already initialized!');
+        return db;
+    }
+    try {
+        const client = await mongodb_1.MongoClient.connect(MONGO_URI);
+        db = client.db();
+        console.log('Connected to MongoDB');
+        return db;
+    }
+    catch (error) {
+        console.error('Error connecting to MongoDB:', error);
+        throw error;
+    }
+};
+exports.initDb = initDb;
+const getDb = () => {
+    if (!db) {
+        console.error('DB not initialized');
+        throw new Error('Db not initialized');
+    }
+    return db;
+};
+exports.getDb = getDb;

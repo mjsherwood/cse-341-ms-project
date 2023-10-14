@@ -1,13 +1,54 @@
+import { ApolloServer } from '@apollo/server';
+import { expressMiddleware } from '@apollo/server/express4';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import express from 'express';
-import './database';  // Import the database file to establish the connection
+import { initDb } from './database';
+import http from 'http';
+import cors from 'cors';
+import pkg from 'body-parser';
+import fs from 'fs';
+import path from 'path';
+import resolvers from './resolvers';
+
+const { json } = pkg;
+
+const typeDefs = fs.readFileSync(path.join(__dirname, 'schema.graphql'), 'utf8');
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const httpServer = http.createServer(app);
 
-app.get('/', (req, res) => {
-  res.send('Hello, welcome to the recipe app backend!');
+interface MyContext {
+  token?: string;
+}
+
+const server = new ApolloServer<MyContext>({
+  typeDefs,
+  resolvers,
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  introspection: true, // Enables introspection of the schema
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+const startServer = async () => {
+  try {
+    await initDb(); // Initialize the database here
+    console.log('Database initialized');
+
+    await server.start();
+    app.use(
+      '/graphql',
+      cors(),
+      json(),
+      expressMiddleware(server, {
+        context: async ({ req }) => ({ token: req.headers.token as string }),
+      }),
+    );
+
+    httpServer.listen({ port: 5127 }, () => {
+      console.log(`🚀 Server ready at http://localhost:5127/graphql`);
+    });
+  } catch (error) {
+    console.error('Failed to start the server:', error);
+  }
+};
+
+startServer();

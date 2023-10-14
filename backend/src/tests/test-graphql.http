@@ -1,0 +1,44 @@
+### Recipe API
+
+### Localhost Query Examples
+
+### Get a single recipe
+POST http://localhost:5127/graphql
+Content-Type: application/json
+
+{
+  "query": "{ recipe(id: \"<RECIPE_ID>\") { name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
+}
+
+### Get all recipes
+POST http://localhost:5127/graphql
+Content-Type: application/json
+
+{
+  "query": "{ recipes { name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
+}
+
+### Add a new recipe
+POST http://localhost:5127/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { addRecipe(name: \"Pancakes\", ingredients: [\"Flour\", \"Milk\", \"Eggs\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\") { name } }"
+}
+
+### Update a recipe
+POST http://localhost:5127/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { updateRecipe(id: \"<RECIPE_ID>\", name: \"Pancakes\", ingredients: [\"Flour\", \"Milk\", \"Eggs\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\") { name } }"
+}
+
+### Delete a recipe
+POST http://localhost:5127/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { deleteRecipe(id: \"<RECIPE_ID>\") { name } }"
+}
+```
