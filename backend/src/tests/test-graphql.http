@@ -23,7 +23,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { addRecipe(name: \"Test7\", ingredients: [\"Flour\", \"Milk\", \"Eggs\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\") { name } }"
+  "query": "mutation { addRecipe(name: \"Test8\", ingredients: [\"Flour\", \"Milk\", \"Eggs\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\") { name } }"
 }
 
 ### Update a recipe
