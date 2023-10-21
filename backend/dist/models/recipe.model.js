@@ -35,4 +35,12 @@ const recipeSchema = new mongoose_1.Schema({
     calories: { type: Number, required: true },
     imageUrl: String,
 });
+// Add a virtual id field
+recipeSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+// Ensure virtual fields are serialised.
+recipeSchema.set('toJSON', {
+    virtuals: true
+});
 exports.Recipe = mongoose_1.default.model('Recipe', recipeSchema);

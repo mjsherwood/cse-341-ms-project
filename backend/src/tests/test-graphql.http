@@ -7,7 +7,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "{ recipe(id: \"6529e0aed3fb818c8bc06ad9\") { name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
+  "query": "{ recipe(id: \"6529e0aed3fb818c8bc06ad9\") { id name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
 }
 
 ### Get all recipes
@@ -15,7 +15,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "{ recipes { name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
+  "query": "{ recipes { id name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
 }
 
 ### Add a new recipe
@@ -23,7 +23,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { addRecipe(name: \"Test8\", ingredients: [\"Flour\", \"Milk\", \"Eggs\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\") { name } }"
+  "query": "mutation { addRecipe(name: \"Test14\", ingredients: [\"Flour\", \"Milk\", \"Eggs\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\") { id name } }"
 }
 
 ### Update a recipe
@@ -31,7 +31,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { updateRecipe(id: \"6529e0aed3fb818c8bc06ad9\", name: \"Pancakes\", ingredients: [\"Flour\", \"Water\", \"Eggs\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\") { name } }"
+  "query": "mutation { updateRecipe(id: \"65332fe44550ee78e7567097\", input: {name: \"Pancakes\", ingredients: [\"Mud\", \"Water\", \"meat\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\"}) { id name } }"
 }
 
 ### Delete a recipe
@@ -39,7 +39,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { deleteRecipe(id: \"652a1ec6307856a4dbe9f414\") { name } }"
+  "query": "mutation { deleteRecipe(id: \"65333df0ccefea81dccfe55f\") { id name } }"
 }
 
 ### Production Query Examples
@@ -49,7 +49,7 @@ POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
 
 {
-  "query": "{ recipe(id: \"6529e0aed3fb818c8bc06ad9\") { name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
+  "query": "{ recipe(id: \"6529e0aed3fb818c8bc06ad9\") { id name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
 }
 
 ### Get all recipes
@@ -57,6 +57,30 @@ POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
 
 {
-  "query": "{ recipes { name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
+  "query": "{ recipes { id name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
+}
+
+### Add a new recipe
+POST https://cse-341-ms-project.onrender.com/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { addRecipe(name: \"Test14\", ingredients: [\"Flour\", \"Milk\", \"Eggs\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\") { id name } }"
+}
+
+### Update a recipe
+POST https://cse-341-ms-project.onrender.com/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { updateRecipe(id: \"65332fe44550ee78e7567097\", input: {name: \"Pancakes\", ingredients: [\"Mud\", \"Water\", \"meat\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\"}) { id name } }"
+}
+
+### Delete a recipe
+POST https://cse-341-ms-project.onrender.com/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { deleteRecipe(id: \"65333df0ccefea81dccfe55f\") { id name } }"
 }
 

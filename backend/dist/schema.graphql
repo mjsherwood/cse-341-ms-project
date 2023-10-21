@@ -12,7 +12,18 @@ type Recipe {
 
 type Query {
   recipes: [Recipe!]!
-  recipe(id: ID!): Recipe
+  recipe(id: ID!): Recipe!
+}
+
+input RecipeInput {
+  name: String
+  ingredients: [String]
+  steps: [String]
+  prepTime: Int
+  cookTime: Int
+  cuisineType: String
+  calories: Int
+  imageUrl: String
 }
 
 type Mutation {
@@ -29,15 +40,8 @@ type Mutation {
 
   updateRecipe(
     id: ID!
-    name: String
-    ingredients: [String]
-    steps: [String]
-    prepTime: Int
-    cookTime: Int
-    cuisineType: String
-    calories: Int
-    imageUrl: String
-  ): Recipe
+    input: RecipeInput!
+  ): Recipe!
 
-  deleteRecipe(id: ID!): Recipe
+  deleteRecipe(id: ID!): Recipe!
 }
