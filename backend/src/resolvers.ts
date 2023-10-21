@@ -1,4 +1,4 @@
-import { getDb } from './database';  // Update this with the actual path to your database file
+import { getDb } from './database';
 import { ObjectId } from 'mongodb';
 
 const resolvers = {
@@ -103,6 +103,7 @@ const resolvers = {
     updateRecipe: async (_: any, args: any) => {
       try {
         const db = getDb();
+
         const updateArgs = { ...args.input };
     
         const result = await db.collection('recipes').findOneAndUpdate(
@@ -138,6 +139,9 @@ const resolvers = {
         }
     
         await db.collection('recipes').findOneAndDelete({ _id: recipeId });
+
+
+        // Transform _id to id
 
         return {
           ...existingRecipe,
@@ -225,3 +229,4 @@ const resolvers = {
 };
 
 export default resolvers;
+

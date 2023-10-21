@@ -33,3 +33,4 @@ recipeSchema.set('toJSON', {
 });
 
 export const Recipe = mongoose.model<IRecipe>('Recipe', recipeSchema);
+
