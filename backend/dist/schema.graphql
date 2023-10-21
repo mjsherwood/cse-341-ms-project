@@ -1,3 +1,4 @@
+# Existing Recipe types, queries, and mutations
 type Recipe {
   id: ID!
   name: String!
@@ -13,6 +14,8 @@ type Recipe {
 type Query {
   recipes: [Recipe!]!
   recipe(id: ID!): Recipe!
+  users: [User!]!         # Query to get all users
+  user(id: ID!): User!    # Query to get a specific user by ID
 }
 
 input RecipeInput {
@@ -26,7 +29,30 @@ input RecipeInput {
   imageUrl: String
 }
 
+# New User types and inputs
+enum UserRole {
+  ADMIN
+  USER
+}
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  role: UserRole!
+  created_at: String!
+  updated_at: String!
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  password: String!
+  role: UserRole!
+}
+
 type Mutation {
+  # Existing Recipe mutations
   addRecipe(
     name: String!
     ingredients: [String!]!
@@ -44,4 +70,17 @@ type Mutation {
   ): Recipe!
 
   deleteRecipe(id: ID!): Recipe!
+
+  # New User mutations
+  addUser(
+    input: UserInput!
+  ): User!                # Mutation to add a new user
+  
+  updateUser(
+    id: ID!
+    input: UserInput!
+  ): User!                # Mutation to update an existing user
+  
+  deleteUser(id: ID!): User!  # Mutation to delete a user
+
 }

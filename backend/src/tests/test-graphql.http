@@ -1,3 +1,5 @@
+Here is my test-graphql.http file:
+
 ### Recipe API
 
 ### Localhost Query Examples
@@ -31,7 +33,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { updateRecipe(id: \"65332fe44550ee78e7567097\", input: {name: \"Pancakes\", ingredients: [\"Mud\", \"Water\", \"meat\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\"}) { id name } }"
+  "query": "mutation { updateRecipe(id: \"65345631d756b1d858fa6329\", input: {name: \"Pancakes\", ingredients: [\"Mud\", \"Water\", \"meat\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\"}) { id name } }"
 }
 
 ### Delete a recipe
@@ -39,7 +41,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { deleteRecipe(id: \"65333df0ccefea81dccfe55f\") { id name } }"
+  "query": "mutation { deleteRecipe(id: \"65345546d756b1d858fa6328\") { id name } }"
 }
 
 ### Production Query Examples
@@ -65,7 +67,7 @@ POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { addRecipe(name: \"Test14\", ingredients: [\"Flour\", \"Milk\", \"Eggs\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\") { id name } }"
+  "query": "mutation { addRecipe(name: \"Test15\", ingredients: [\"Flour\", \"Milk\", \"Eggs\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\") { id name } }"
 }
 
 ### Update a recipe
@@ -73,7 +75,7 @@ POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { updateRecipe(id: \"65332fe44550ee78e7567097\", input: {name: \"Pancakes\", ingredients: [\"Mud\", \"Water\", \"meat\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\"}) { id name } }"
+  "query": "mutation { updateRecipe(id: \"6533400d8cd7dae7eb1b7c1e\", input: {name: \"Pancakes\", ingredients: [\"Mud\", \"Water\", \"meat\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\"}) { id name } }"
 }
 
 ### Delete a recipe
@@ -81,6 +83,91 @@ POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { deleteRecipe(id: \"65333df0ccefea81dccfe55f\") { id name } }"
+  "query": "mutation { deleteRecipe(id: \"6533400d8cd7dae7eb1b7c1e\") { id name } }"
 }
 
+### User API
+
+### Localhost User Query Examples
+
+### Get a single user
+POST http://localhost:5127/graphql
+Content-Type: application/json
+
+{
+  "query": "{ user(id: \"someUserId\") { id username email role created_at updated_at } }"
+}
+
+### Get all users
+POST http://localhost:5127/graphql
+Content-Type: application/json
+
+{
+  "query": "{ users { id username email role created_at updated_at } }"
+}
+
+### Add a new user
+POST http://localhost:5127/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { addUser(input: {username: \"newuser\", email: \"newuser@example.com\", password: \"password\", role: \"USER\"}) { id username email role } }"
+}
+
+### Update a user
+POST http://localhost:5127/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { updateUser(id: \"someUserId\", input: {username: \"updateduser\", email: \"updateduser@example.com\", password: \"newpassword\", role: \"ADMIN\"}) { id username email role } }"
+}
+
+### Delete a user
+POST http://localhost:5127/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { deleteUser(id: \"someUserId\") { id username email role } }"
+}
+
+### Production User Query Examples
+
+### Get a single user
+POST https://cse-341-ms-project.onrender.com/graphql
+Content-Type: application/json
+
+{
+  "query": "{ user(id: \"someUserId\") { id username email role created_at updated_at } }"
+}
+
+### Get all users
+POST https://cse-341-ms-project.onrender.com/graphql
+Content-Type: application/json
+
+{
+  "query": "{ users { id username email role created_at updated_at } }"
+}
+
+### Add a new user
+POST https://cse-341-ms-project.onrender.com/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { addUser(input: {username: \"newuser\", email: \"newuser@example.com\", password: \"password\", role: \"USER\"}) { id username email role } }"
+}
+
+### Update a user
+POST https://cse-341-ms-project.onrender.com/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { updateUser(id: \"someUserId\", input: {username: \"updateduser\", email: \"updateduser@example.com\", password: \"newpassword\", role: \"ADMIN\"}) { id username email role } }"
+}
+
+### Delete a user
+POST https://cse-341-ms-project.onrender.com/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { deleteUser(id: \"someUserId\") { id username email role } }"
+}
