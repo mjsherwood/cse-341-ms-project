@@ -24,15 +24,25 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
+var UserRole;
+(function (UserRole) {
+    UserRole["ADMIN"] = "ADMIN";
+    UserRole["USER"] = "USER";
+    // You can add more roles as needed
+})(UserRole || (UserRole = {}));
 const UserSchema = new mongoose_1.Schema({
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    role: { type: String, required: true, enum: Object.values(UserRole) },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now }
 });
-// Update the updated_at field on save
+// Update the updated_at field on save and set created_at if it doesn't exist
 UserSchema.pre('save', function (next) {
+    if (!this.created_at) {
+        this.created_at = new Date();
+    }
     this.updated_at = new Date();
     next();
 });
