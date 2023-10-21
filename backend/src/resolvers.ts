@@ -7,7 +7,12 @@ const resolvers = {
       try {
         const db = getDb();
         const recipes = await db.collection('recipes').find().toArray();
-        return recipes;
+    
+        // Transform _id to id
+        return recipes.map(recipe => ({
+          ...recipe,
+          id: recipe._id.toString(),
+        }));
       } catch (error) {
         console.error('Error fetching recipes:', error);
         throw new Error('Error fetching recipes');
@@ -21,7 +26,12 @@ const resolvers = {
           console.error('Recipe not found');
           throw new Error('Recipe not found');
         }
-        return recipe;
+
+        // Transform _id to id
+        return {
+          ...recipe,
+          id: recipe._id.toString(),
+        };
       } catch (error) {
         console.error('Error fetching recipe:', error);
         throw new Error('Error fetching recipe');
@@ -32,18 +42,26 @@ const resolvers = {
   Mutation: {
     addRecipe: async (_: any, args: any) => {
       try {
-        const db = getDb();  // Get the database instance
+        const db = getDb();  
         const result = await db.collection('recipes').insertOne(args);
-  
+    
         if (!result.insertedId) {
           throw new Error('Failed to insert recipe');
         }
-  
-        // Retrieve the inserted recipe from the database
+    
         const newRecipe = await db.collection('recipes').findOne({ _id: result.insertedId });
-        return newRecipe;
+    
+        if (!newRecipe) {
+          throw new Error('Inserted recipe not found');
+        }
+    
+        // Transform _id to id
+        return {
+          ...newRecipe,
+          id: newRecipe._id.toString(),
+        };
       } catch (error) {
-        console.error('Error adding recipe:', error);  // Log the actual error
+        console.error('Error adding recipe:', error);  
         throw new Error('Error adding recipe');
       }
     },
@@ -51,27 +69,28 @@ const resolvers = {
     updateRecipe: async (_: any, args: any) => {
       try {
         const db = getDb();
-        console.log('Args:', args);
-    
-        const updateArgs = { ...args };
-        delete updateArgs.id;  // Remove the id from the arguments as we don't want to update it
-    
+
+        const updateArgs = {
+            ...args.input
+        };
+
         const result = await db.collection('recipes').findOneAndUpdate(
-          { _id: new ObjectId(args.id) },
-          { $set: updateArgs },
-          { returnDocument: 'after' }
+            { _id: new ObjectId(args.id) },
+            { $set: updateArgs },
+            { returnDocument: 'after' }
         );
-    
-        console.log('Result:', result);
-    
-        if (result && !result.value) {
-          console.log(`Recipe not found for ID: ${args.id}`);
-          throw new Error('Recipe not found');
+
+        if (!result.value) {
+            throw new Error('Recipe not found');
         }
-    
-        return result.value;
+
+        // Transform _id to id
+        return {
+          ...result.value,
+          id: result.value._id.toString(),
+        };
       } catch (error) {
-        console.log('Specific error updating recipe:', error);
+        console.error('Error updating recipe:', error);
         throw new Error('Error updating recipe');
       }
     },
@@ -80,18 +99,20 @@ const resolvers = {
       try {
         const db = getDb();
         const recipeId = new ObjectId(args.id);
-        console.log(`Trying to delete recipe with ID: ${args.id}`);
-    
-        // Log details of the recipe if it exists
+
         const existingRecipe = await db.collection('recipes').findOne({ _id: recipeId });
-        console.log('Existing recipe:', existingRecipe);
     
-        const result = await db.collection('recipes').findOneAndDelete({ _id: recipeId });
-        if (!result || !result.value) {
+        if (!existingRecipe) {
           throw new Error('Recipe not found');
         }
-        console.log('Recipe deleted:', result.value);
-        return result.value;
+    
+        await db.collection('recipes').findOneAndDelete({ _id: recipeId });
+
+        // Transform _id to id
+        return {
+          ...existingRecipe,
+          id: existingRecipe._id.toString(),
+        };
       } catch (error) {
         console.error('Error deleting recipe:', error);
         throw new Error('Error deleting recipe');
@@ -101,3 +122,4 @@ const resolvers = {
 };
 
 export default resolvers;
+

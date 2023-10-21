@@ -8,7 +8,11 @@ const resolvers = {
             try {
                 const db = (0, database_1.getDb)();
                 const recipes = await db.collection('recipes').find().toArray();
-                return recipes;
+                // Transform _id to id
+                return recipes.map(recipe => ({
+                    ...recipe,
+                    id: recipe._id.toString(),
+                }));
             }
             catch (error) {
                 console.error('Error fetching recipes:', error);
@@ -23,7 +27,11 @@ const resolvers = {
                     console.error('Recipe not found');
                     throw new Error('Recipe not found');
                 }
-                return recipe;
+                // Transform _id to id
+                return {
+                    ...recipe,
+                    id: recipe._id.toString(),
+                };
             }
             catch (error) {
                 console.error('Error fetching recipe:', error);
@@ -34,48 +42,61 @@ const resolvers = {
     Mutation: {
         addRecipe: async (_, args) => {
             try {
-                const db = (0, database_1.getDb)(); // Get the database instance
+                const db = (0, database_1.getDb)();
                 const result = await db.collection('recipes').insertOne(args);
                 if (!result.insertedId) {
                     throw new Error('Failed to insert recipe');
                 }
-                // Retrieve the inserted recipe from the database
                 const newRecipe = await db.collection('recipes').findOne({ _id: result.insertedId });
-                return newRecipe;
+                if (!newRecipe) {
+                    throw new Error('Inserted recipe not found');
+                }
+                // Transform _id to id
+                return {
+                    ...newRecipe,
+                    id: newRecipe._id.toString(),
+                };
             }
             catch (error) {
-                console.error('Error adding recipe:', error); // Log the actual error
+                console.error('Error adding recipe:', error);
                 throw new Error('Error adding recipe');
             }
         },
         updateRecipe: async (_, args) => {
             try {
                 const db = (0, database_1.getDb)();
-                const result = await db.collection('recipes').findOneAndUpdate({ _id: new mongodb_1.ObjectId(args.id) }, { $set: args }, { returnDocument: 'after' });
-                if (!result || !result.value) { // Check if result is not null here
-                    console.error('Recipe not found for ID:', args.id);
+                const updateArgs = {
+                    ...args.input
+                };
+                const result = await db.collection('recipes').findOneAndUpdate({ _id: new mongodb_1.ObjectId(args.id) }, { $set: updateArgs }, { returnDocument: 'after' });
+                if (!result.value) {
                     throw new Error('Recipe not found');
                 }
-                return result.value;
+                // Transform _id to id
+                return {
+                    ...result.value,
+                    id: result.value._id.toString(),
+                };
             }
             catch (error) {
-                console.error('Specific error updating recipe:', error);
-                if (error instanceof Error) {
-                    throw new Error('Error updating recipe: ' + error.message);
-                }
-                else {
-                    throw new Error('An unexpected error occurred while updating the recipe.');
-                }
+                console.error('Error updating recipe:', error);
+                throw new Error('Error updating recipe');
             }
         },
         deleteRecipe: async (_, args) => {
             try {
                 const db = (0, database_1.getDb)();
-                const result = await db.collection('recipes').findOneAndDelete({ _id: new mongodb_1.ObjectId(args.id) });
-                if (!result || !result.value) { // Add null check for result here
+                const recipeId = new mongodb_1.ObjectId(args.id);
+                const existingRecipe = await db.collection('recipes').findOne({ _id: recipeId });
+                if (!existingRecipe) {
                     throw new Error('Recipe not found');
                 }
-                return result.value;
+                await db.collection('recipes').findOneAndDelete({ _id: recipeId });
+                // Transform _id to id
+                return {
+                    ...existingRecipe,
+                    id: existingRecipe._id.toString(),
+                };
             }
             catch (error) {
                 console.error('Error deleting recipe:', error);

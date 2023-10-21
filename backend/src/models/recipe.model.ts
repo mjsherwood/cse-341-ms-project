@@ -22,4 +22,14 @@ const recipeSchema = new Schema<IRecipe>({
   imageUrl: String,
 });
 
+// Add a virtual id field
+recipeSchema.virtual('id').get(function (this: { _id: any; }) {
+  return this._id.toHexString();
+});
+
+// Ensure virtual fields are serialised.
+recipeSchema.set('toJSON', {
+  virtuals: true
+});
+
 export const Recipe = mongoose.model<IRecipe>('Recipe', recipeSchema);
