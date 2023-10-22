@@ -8,7 +8,7 @@ import cors from 'cors';
 import pkg from 'body-parser';
 import fs from 'fs';
 import path from 'path';
-import resolvers from './resolvers';
+import resolvers from './resolvers/index';
 
 const { json } = pkg;
 

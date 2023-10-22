@@ -13,14 +13,14 @@ const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
-const resolvers_1 = __importDefault(require("./resolvers"));
+const index_1 = __importDefault(require("./resolvers/index"));
 const { json } = body_parser_1.default;
 const typeDefs = fs_1.default.readFileSync(path_1.default.join(__dirname, 'schema.graphql'), 'utf8');
 const app = (0, express_1.default)();
 const httpServer = http_1.default.createServer(app);
 const server = new server_1.ApolloServer({
     typeDefs,
-    resolvers: resolvers_1.default,
+    resolvers: index_1.default,
     plugins: [(0, drainHttpServer_1.ApolloServerPluginDrainHttpServer)({ httpServer })],
     introspection: true, // Enables introspection of the schema
 });
