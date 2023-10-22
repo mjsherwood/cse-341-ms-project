@@ -75,7 +75,7 @@ POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { updateRecipe(id: \"653463b522a5d3aa1d9f3205\", input: {name: \"Pancakes 3\", ingredients: [\"Mud\", \"Water\", \"meat\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\"}) { id name } }"
+  "query": "mutation { updateRecipe(id: \"653463b522a5d3aa1d9f3205\", input: {name: \"Pancakes 4\", ingredients: [\"Mud\", \"Water\", \"meat\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\"}) { id name } }"
 }
 
 ### Delete a recipe
@@ -83,7 +83,7 @@ POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { deleteRecipe(id: \"6533400d8cd7dae7eb1b7c1e\") { id name } }"
+  "query": "mutation { deleteRecipe(id: \"6534b1667078ed4debc966d3\") { id name } }"
 }
 
 ### User API

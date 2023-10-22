@@ -1,6 +1,10 @@
 import { getDb } from '../database';
 import { ObjectId } from 'mongodb';
 
+function isWithId(obj: any): obj is { _id: ObjectId } {
+    return obj && obj._id !== undefined;
+}
+
 const userResolvers = {
   Query: {
     users: async () => {
@@ -77,7 +81,7 @@ const userResolvers = {
             );
     
             const updatedUser = result.value || result;
-            if (!updatedUser) {
+            if (!isWithId(updatedUser)) {
                 console.error('User not found or update failed: No additional error information');
                 throw new Error('User not found or update failed');
             }
