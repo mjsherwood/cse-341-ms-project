@@ -76,14 +76,15 @@ const userResolvers = {
                 { returnDocument: 'after' }
             );
     
-            if (!result) {
+            const updatedUser = result.value || result;
+            if (!updatedUser) {
                 console.error('User not found or update failed: No additional error information');
                 throw new Error('User not found or update failed');
             }
     
             return {
-                ...result, 
-                id: result._id.toString(),
+                ...updatedUser,
+                id: updatedUser._id.toString(),
             };
         } catch (error) {
             console.error('Error updating user:', error);
