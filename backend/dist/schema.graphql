@@ -82,5 +82,4 @@ type Mutation {
   ): User!                # Mutation to update an existing user
   
   deleteUser(id: ID!): User!  # Mutation to delete a user
-
 }

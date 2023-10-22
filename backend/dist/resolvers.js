@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const database_1 = require("./database"); // Update this with the actual path to your database file
+const database_1 = require("./database");
 const mongodb_1 = require("mongodb");
 const resolvers = {
     Query: {
@@ -94,19 +94,19 @@ const resolvers = {
         updateRecipe: async (_, args) => {
             try {
                 const db = (0, database_1.getDb)();
-                console.log('Args:', args);
-                const updateArgs = { ...args };
-                delete updateArgs.id; // Remove the id from the arguments as we don't want to update it
+                const updateArgs = { ...args.input };
                 const result = await db.collection('recipes').findOneAndUpdate({ _id: new mongodb_1.ObjectId(args.id) }, { $set: updateArgs }, { returnDocument: 'after' });
-                console.log('Result:', result);
                 if (!result) {
-                    console.log(`Recipe not found for ID: ${args.id}`);
-                    throw new Error('Recipe not found');
+                    console.error('Recipe not found or update failed: No additional error information');
+                    throw new Error('Recipe not found or update failed');
                 }
-                return result.value; // At this point, TypeScript should understand that result is not null
+                return {
+                    ...result,
+                    id: result._id.toString(), // Changed this line from result.value._id.toString()
+                };
             }
             catch (error) {
-                console.log('Specific error updating recipe:', error);
+                console.error('Error updating recipe:', error);
                 throw new Error('Error updating recipe');
             }
         },
@@ -119,6 +119,7 @@ const resolvers = {
                     throw new Error('Recipe not found');
                 }
                 await db.collection('recipes').findOneAndDelete({ _id: recipeId });
+                // Transform _id to id
                 return {
                     ...existingRecipe,
                     id: existingRecipe._id.toString(),

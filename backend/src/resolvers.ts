@@ -103,7 +103,6 @@ const resolvers = {
     updateRecipe: async (_: any, args: any) => {
       try {
         const db = getDb();
-
         const updateArgs = { ...args.input };
     
         const result = await db.collection('recipes').findOneAndUpdate(
@@ -112,21 +111,21 @@ const resolvers = {
             { returnDocument: 'after' }
         );
     
-        if (!result.ok || !result.value) {
-            console.error('Recipe not found or update failed:', result.lastErrorObject);
+        if (!result) {
+            console.error('Recipe not found or update failed: No additional error information');
             throw new Error('Recipe not found or update failed');
         }
     
         return {
-          ...result.value,
-          id: result.value._id.toString(),
+          ...result,  // Changed this line from ...result.value
+          id: result._id.toString(),  // Changed this line from result.value._id.toString()
         };
       } catch (error) {
         console.error('Error updating recipe:', error);
         throw new Error('Error updating recipe');
       }
     },
-
+    
     deleteRecipe: async (_: any, args: any) => {
       try {
         const db = getDb();

@@ -33,7 +33,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { updateRecipe(id: \"65345631d756b1d858fa6329\", input: {name: \"Pancakes\", ingredients: [\"Mud\", \"Water\", \"meat\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\"}) { id name } }"
+  "query": "mutation { updateRecipe(id: \"6534660622a5d3aa1d9f3206\", input: {name: \"Ice Cream\", ingredients: [\"Mud\", \"Water\", \"meat\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\"}) { id name } }"
 }
 
 ### Delete a recipe
@@ -41,7 +41,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { deleteRecipe(id: \"65345546d756b1d858fa6328\") { id name } }"
+  "query": "mutation { deleteRecipe(id: \"653469fc4348f988fd2f27f6\") { id name } }"
 }
 
 ### Production Query Examples
