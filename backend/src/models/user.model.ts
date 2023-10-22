@@ -11,17 +11,13 @@ interface IUser extends Document {
   email: string;
   password: string;
   role: UserRole;
-  created_at: Date;
-  updated_at: Date;
 }
 
 const UserSchema: Schema = new Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  role: { type: String, required: true, enum: Object.values(UserRole) }, // Utilizing UserRole enum
-  created_at: { type: Date, default: Date.now },
-  updated_at: { type: Date, default: Date.now }
+  role: { type: String, required: true, enum: Object.values(UserRole) } // Utilizing UserRole enum
 });
 
 // Update the updated_at field on save and set created_at if it doesn't exist

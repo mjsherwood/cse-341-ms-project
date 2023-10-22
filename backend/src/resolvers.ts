@@ -57,12 +57,12 @@ const resolvers = {
       try {
         const db = getDb();
         const user = await db.collection('users').findOne({ _id: new ObjectId(args.id) });
-
+    
         if (!user) {
           console.error('User not found');
           throw new Error('User not found');
         }
-
+    
         return {
           ...user,
           id: user._id.toString(),
@@ -71,9 +71,8 @@ const resolvers = {
         console.error('Error fetching user:', error);
         throw new Error('Error fetching user');
       }
-    }
+    },
   },
-
   Mutation: {
     addRecipe: async (_: any, args: any) => {
       try {
@@ -153,6 +152,7 @@ const resolvers = {
     },
 
     addUser: async (_: any, args: any) => {
+      console.log(args); 
       try {
         const db = getDb();  
         const result = await db.collection('users').insertOne(args.input);
@@ -223,7 +223,7 @@ const resolvers = {
         console.error('Error deleting user:', error);
         throw new Error('Error deleting user');
       }
-    }
+    },
   }
 };
 

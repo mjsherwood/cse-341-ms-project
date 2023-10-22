@@ -67,7 +67,7 @@ const resolvers = {
                 console.error('Error fetching user:', error);
                 throw new Error('Error fetching user');
             }
-        }
+        },
     },
     Mutation: {
         addRecipe: async (_, args) => {
@@ -187,7 +187,7 @@ const resolvers = {
                 console.error('Error deleting user:', error);
                 throw new Error('Error deleting user');
             }
-        }
+        },
     }
 };
 exports.default = resolvers;

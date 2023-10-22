@@ -33,7 +33,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { updateRecipe(id: \"6534660622a5d3aa1d9f3206\", input: {name: \"Ice Cream\", ingredients: [\"Mud\", \"Water\", \"meat\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\"}) { id name } }"
+  "query": "mutation { updateRecipe(id: \"6534660622a5d3aa1d9f3206\", input: {name: \"Ice Cream Sausage\", ingredients: [\"Mud\", \"Water\", \"meat\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\"}) { id name } }"
 }
 
 ### Delete a recipe
@@ -41,7 +41,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { deleteRecipe(id: \"653469fc4348f988fd2f27f6\") { id name } }"
+  "query": "mutation { deleteRecipe(id: \"65348486002201b5f9e80b28\") { id name } }"
 }
 
 ### Production Query Examples
@@ -95,7 +95,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "{ user(id: \"someUserId\") { id username email role created_at updated_at } }"
+  "query": "{ user(id: \"653483fe002201b5f9e80b27\") { id username email role } }"
 }
 
 ### Get all users
@@ -103,7 +103,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "{ users { id username email role created_at updated_at } }"
+  "query": "{ users { id username email role } }"
 }
 
 ### Add a new user
@@ -111,7 +111,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { addUser(input: {username: \"newuser\", email: \"newuser@example.com\", password: \"password\", role: \"USER\"}) { id username email role } }"
+  "query": "mutation { addUser(input: {username: \"newuser\", email: \"newuser@example.com\", password: \"password\", role: USER }) { id username email role } }"
 }
 
 ### Update a user
@@ -119,7 +119,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { updateUser(id: \"someUserId\", input: {username: \"updateduser\", email: \"updateduser@example.com\", password: \"newpassword\", role: \"ADMIN\"}) { id username email role } }"
+  "query": "mutation { updateUser(id: \"someUserId\", input: {username: \"updateduser\", email: \"updateduser@example.com\", password: \"newpassword\", role: ADMIN}) { id username email role } }"
 }
 
 ### Delete a user
@@ -137,7 +137,7 @@ POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
 
 {
-  "query": "{ user(id: \"someUserId\") { id username email role created_at updated_at } }"
+  "query": "{ user(id: \"someUserId\") { id username email role } }"
 }
 
 ### Get all users
@@ -145,7 +145,7 @@ POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
 
 {
-  "query": "{ users { id username email role created_at updated_at } }"
+  "query": "{ users { id username email role } }"
 }
 
 ### Add a new user
@@ -153,7 +153,7 @@ POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { addUser(input: {username: \"newuser\", email: \"newuser@example.com\", password: \"password\", role: \"USER\"}) { id username email role } }"
+  "query": "mutation { addUser(input: {username: \"newuser\", email: \"newuser@example.com\", password: \"password\", role: USER}) { id username email role } }"
 }
 
 ### Update a user
@@ -161,7 +161,7 @@ POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { updateUser(id: \"someUserId\", input: {username: \"updateduser\", email: \"updateduser@example.com\", password: \"newpassword\", role: \"ADMIN\"}) { id username email role } }"
+  "query": "mutation { updateUser(id: \"someUserId\", input: {username: \"updateduser\", email: \"updateduser@example.com\", password: \"newpassword\", role: ADMIN}) { id username email role } }"
 }
 
 ### Delete a user
