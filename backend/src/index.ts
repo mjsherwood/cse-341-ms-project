@@ -25,12 +25,12 @@ const server = new ApolloServer<MyContext>({
   typeDefs,
   resolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-  introspection: true, // Enables introspection of the schema
+  introspection: true, 
 });
 
 const startServer = async () => {
   try {
-    await initDb(); // Initialize the database here
+    await initDb(); 
     console.log('Database initialized');
 
     await server.start();
