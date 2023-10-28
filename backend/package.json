@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:clean": "rimraf dist",
-    "dev:build": "npm run dev:clean && npx tsc && copyfiles -u 1 src/config/.env dist && shx mkdir -p dist/graphql/schema && shx cp src/graphql/schema/schema.graphql dist/graphql/schema/schema.graphql",
+    "dev:build": "npm run dev:clean && tsc && copyfiles -u 1 src/config/.env dist && shx mkdir -p dist/graphql/schema && shx cp src/graphql/schema/schema.graphql dist/graphql/schema/schema.graphql",
     "dev:start": "ts-node src/index.ts",
-    "prod:build": "npx tsc && copyfiles -u 1 src/config/.env dist && shx mkdir -p dist/graphql/schema && shx cp src/graphql/schema/schema.graphql dist/graphql/schema/schema.graphql",
+    "prod:build": "tsc && copyfiles -u 1 src/config/.env dist && shx mkdir -p dist/graphql/schema && shx cp src/graphql/schema/schema.graphql dist/graphql/schema/schema.graphql",
     "prod:start": "node dist/index.js",
     "build": "npm run prod:build",
     "start": "npm run prod:start"
