@@ -1,4 +1,4 @@
-import { getDb } from '../database';
+import { getDb } from '../../database/database';
 import { ObjectId } from 'mongodb';
 
 function isWithId(obj: any): obj is { _id: ObjectId } {

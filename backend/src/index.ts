@@ -2,17 +2,17 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import express from 'express';
-import { initDb } from './database';
+import { initDb } from './database/database';
 import http from 'http';
 import cors from 'cors';
 import pkg from 'body-parser';
 import fs from 'fs';
 import path from 'path';
-import resolvers from './resolvers/index';
+import resolvers from './graphql/resolvers/index';
 
 const { json } = pkg;
 
-const typeDefs = fs.readFileSync(path.join(__dirname, 'schema.graphql'), 'utf8');
+const typeDefs = fs.readFileSync(path.join(__dirname, 'graphql/schema/schema.graphql'), 'utf8');
 
 const app = express();
 const httpServer = http.createServer(app);

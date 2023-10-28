@@ -1,6 +1,8 @@
 import { MongoClient, Db } from 'mongodb';
 import dotenv from 'dotenv';
-dotenv.config();
+import path from 'path';
+
+dotenv.config({ path: path.resolve(__dirname, '../config/.env') });
 
 let db: Db;
 
