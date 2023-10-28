@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rimraf dist",
+    "clean": "if [ \"$SKIP_CLEAN\" != \"true\" ]; then rimraf dist; fi",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
     "build": "npm run clean && tsc && copyfiles -u 1 src/config/.env dist && shx mkdir -p dist/graphql/schema && shx cp src/graphql/schema/schema.graphql dist/graphql/schema/schema.graphql"
