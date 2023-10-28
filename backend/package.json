@@ -5,10 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "ts-node src/util/clean.ts",
-    "start": "node dist/index.js",
-    "dev": "ts-node src/index.ts",
-    "build": "npm run clean && tsc && copyfiles -u 1 src/config/.env dist && shx mkdir -p dist/graphql/schema && shx cp src/graphql/schema/schema.graphql dist/graphql/schema/schema.graphql"
+    "dev:clean": "rimraf dist",
+    "dev:build": "npm run dev:clean && tsc && copyfiles -u 1 src/config/.env dist && shx mkdir -p dist/graphql/schema && shx cp src/graphql/schema/schema.graphql dist/graphql/schema/schema.graphql",
+    "dev:start": "ts-node src/index.ts",
+    
+    "prod:build": "tsc && copyfiles -u 1 src/config/.env dist && shx mkdir -p dist/graphql/schema && shx cp src/graphql/schema/schema.graphql dist/graphql/schema/schema.graphql",
+    "prod:start": "node dist/index.js",
+    
+    "build": "npm run prod:build",
+    "start": "npm run prod:start"
   },
   "keywords": [],
   "author": "",
