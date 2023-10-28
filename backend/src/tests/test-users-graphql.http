@@ -33,7 +33,7 @@ POST http://localhost:5127/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { updateUser(id: \"65334ff1206511a0c289ed27\", input: {username: \"updateduser9\", email: \"updateduser@example.com\", password: \"newpassword\", role: ADMIN}) { id username email role } }"
+  "query": "mutation { updateUser(id: \"65334ff1206511a0c289ed27\", input: {username: \"updateduser10\", email: \"updateduser@example.com\", password: \"newpassword\", role: ADMIN}) { id username email role } }"
 }
 
 ### Delete a user

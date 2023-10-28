@@ -69,7 +69,7 @@ const userResolvers = {
                 { $set: updateArgs },
                 { returnDocument: 'after' }
             );
-            const updatedUser = result.value || result;
+            const updatedUser = result?.value || result;
             if (!isWithId(updatedUser)) {
                 console.error('User not found or update failed: No additional error information');
                 throw new Error('User not found or update failed');

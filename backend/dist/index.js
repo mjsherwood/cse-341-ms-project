@@ -22,11 +22,11 @@ const server = new server_1.ApolloServer({
     typeDefs,
     resolvers: index_1.default,
     plugins: [(0, drainHttpServer_1.ApolloServerPluginDrainHttpServer)({ httpServer })],
-    introspection: true, // Enables introspection of the schema
+    introspection: true,
 });
 const startServer = async () => {
     try {
-        await (0, database_1.initDb)(); // Initialize the database here
+        await (0, database_1.initDb)();
         console.log('Database initialized');
         await server.start();
         app.use('/graphql', (0, cors_1.default)(), json(), (0, express4_1.expressMiddleware)(server, {

@@ -70,7 +70,7 @@ const recipeResolvers = {
           { $set: updateArgs },
           { returnDocument: 'after' }
         );
-        const updatedRecipe = result.value || result;
+        const updatedRecipe = result?.value || result;
         if (!isWithId(updatedRecipe)) {
           console.error('Recipe not found or update failed: No additional error information');
           throw new Error('Recipe not found or update failed');
