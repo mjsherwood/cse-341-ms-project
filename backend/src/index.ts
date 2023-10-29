@@ -5,12 +5,12 @@ import express from 'express';
 import { initDb } from './database/database';
 import http from 'http';
 import cors from 'cors';
-import pkg from 'body-parser';
+//import * as bodyParser from 'body-parser';
 import fs from 'fs';
 import path from 'path';
 import resolvers from './graphql/resolvers/index';
 
-const { json } = pkg;
+//const { json } = bodyParser;
 
 const typeDefs = fs.readFileSync(path.join(__dirname, 'graphql/schema/schema.graphql'), 'utf8');
 
@@ -37,7 +37,7 @@ const startServer = async () => {
     app.use(
       '/graphql',
       cors(),
-      json(),
+      express.json(),
       expressMiddleware(server, {
         context: async ({ req }) => ({ token: req.headers.token as string }),
       }),

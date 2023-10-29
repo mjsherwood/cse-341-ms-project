@@ -10,11 +10,11 @@ const express_1 = __importDefault(require("express"));
 const database_1 = require("./database/database");
 const http_1 = __importDefault(require("http"));
 const cors_1 = __importDefault(require("cors"));
-const body_parser_1 = __importDefault(require("body-parser"));
+//import * as bodyParser from 'body-parser';
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const index_1 = __importDefault(require("./graphql/resolvers/index"));
-const { json } = body_parser_1.default;
+//const { json } = bodyParser;
 const typeDefs = fs_1.default.readFileSync(path_1.default.join(__dirname, 'graphql/schema/schema.graphql'), 'utf8');
 const app = (0, express_1.default)();
 const httpServer = http_1.default.createServer(app);
@@ -29,7 +29,7 @@ const startServer = async () => {
         await (0, database_1.initDb)();
         console.log('Database initialized');
         await server.start();
-        app.use('/graphql', (0, cors_1.default)(), json(), (0, express4_1.expressMiddleware)(server, {
+        app.use('/graphql', (0, cors_1.default)(), express_1.default.json(), (0, express4_1.expressMiddleware)(server, {
             context: async ({ req }) => ({ token: req.headers.token }),
         }));
         httpServer.listen({ port: 5127 }, () => {
