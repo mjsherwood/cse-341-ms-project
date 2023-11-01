@@ -8,7 +8,7 @@
     "dev:clean": "rimraf dist",
     "dev:build": "npm run dev:clean && tsc && copyfiles -u 1 src/config/.env dist && mkdirp dist/graphql/schema && copyfiles -f src/graphql/schema/schema.graphql dist/graphql/schema/",
     "dev:start": "ts-node src/index.ts",
-    "prod:build": "copyfiles -f src/graphql/schema/schema.graphql dist/graphql/schema/",
+    "prod:build": "echo 'No build steps required'",
     "prod:start": "node dist/index.js",
     "build": "npm run prod:build",
     "start": "npm run prod:start"
