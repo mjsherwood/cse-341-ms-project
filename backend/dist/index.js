@@ -10,27 +10,32 @@ const express_1 = __importDefault(require("express"));
 const database_1 = require("./database/database");
 const http_1 = __importDefault(require("http"));
 const cors_1 = __importDefault(require("cors"));
-//import * as bodyParser from 'body-parser';
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const index_1 = __importDefault(require("./graphql/resolvers/index"));
-//const { json } = bodyParser;
+const authMiddleware_1 = require("./util/authMiddleware");
 const typeDefs = fs_1.default.readFileSync(path_1.default.join(__dirname, 'graphql/schema/schema.graphql'), 'utf8');
 const app = (0, express_1.default)();
 const httpServer = http_1.default.createServer(app);
 const server = new server_1.ApolloServer({
     typeDefs,
     resolvers: index_1.default,
-    plugins: [(0, drainHttpServer_1.ApolloServerPluginDrainHttpServer)({ httpServer })],
     introspection: true,
+    plugins: [(0, drainHttpServer_1.ApolloServerPluginDrainHttpServer)({ httpServer })],
 });
 const startServer = async () => {
     try {
         await (0, database_1.initDb)();
         console.log('Database initialized');
         await server.start();
-        app.use('/graphql', (0, cors_1.default)(), express_1.default.json(), (0, express4_1.expressMiddleware)(server, {
-            context: async ({ req }) => ({ token: req.headers.token }),
+        app.use((0, cors_1.default)());
+        app.use(express_1.default.json());
+        app.use(authMiddleware_1.checkJwt); // JWT Middleware
+        app.use('/graphql', (0, express4_1.expressMiddleware)(server, {
+            context: async ({ req }) => {
+                // Now properly typed with the extended Request type
+                return { user: req.user };
+            },
         }));
         httpServer.listen({ port: 5127 }, () => {
             console.log(`🚀 Server ready at http://localhost:5127/graphql`);
@@ -41,3 +46,11 @@ const startServer = async () => {
     }
 };
 startServer();
+// Error handling middleware to capture JWT errors and others
+app.use((err, req, res, next) => {
+    if (err.name === 'UnauthorizedError') {
+        res.status(err.status).send({ error: err.message });
+        return;
+    }
+    next(err);
+});

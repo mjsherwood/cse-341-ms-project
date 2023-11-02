@@ -1,45 +1,54 @@
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import { initDb } from './database/database';
 import http from 'http';
 import cors from 'cors';
-//import * as bodyParser from 'body-parser';
 import fs from 'fs';
 import path from 'path';
 import resolvers from './graphql/resolvers/index';
+import { checkJwt } from './util/authMiddleware';
 
-//const { json } = bodyParser;
+// Extend the Express Request type with the user property
+declare global {
+  namespace Express {
+    interface Request {
+      user?: any; // Replace 'any' with your User type if available
+    }
+  }
+}
 
 const typeDefs = fs.readFileSync(path.join(__dirname, 'graphql/schema/schema.graphql'), 'utf8');
 
 const app = express();
 const httpServer = http.createServer(app);
 
-interface MyContext {
-  token?: string;
-}
-
-const server = new ApolloServer<MyContext>({
+const server = new ApolloServer({
   typeDefs,
   resolvers,
+  introspection: true,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-  introspection: true, 
 });
 
 const startServer = async () => {
   try {
-    await initDb(); 
+    await initDb();
     console.log('Database initialized');
 
     await server.start();
+
+    app.use(cors());
+    app.use(express.json());
+    app.use(checkJwt); // JWT Middleware
+
     app.use(
       '/graphql',
-      cors(),
-      express.json(),
       expressMiddleware(server, {
-        context: async ({ req }) => ({ token: req.headers.token as string }),
+        context: async ({ req }: { req: Request }) => {
+          // Now properly typed with the extended Request type
+          return { user: req.user };
+        },
       }),
     );
 
@@ -52,3 +61,13 @@ const startServer = async () => {
 };
 
 startServer();
+
+// Error handling middleware to capture JWT errors and others
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  if (err.name === 'UnauthorizedError') {
+    res.status(err.status).send({ error: err.message });
+    return;
+  }
+  next(err);
+});
+
