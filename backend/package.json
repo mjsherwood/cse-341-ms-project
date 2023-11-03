@@ -9,7 +9,7 @@
     "dev:build": "npm run dev:clean && tsc && copyfiles -u 1 src/config/.env dist && mkdirp dist/graphql/schema && copyfiles -f src/graphql/schema/schema.graphql dist/graphql/schema/",
     "dev:start": "ts-node src/index.ts",
     "prod:build": "npm install && echo 'No build steps required'",
-    "prod:start": "node dist/index.js",
+    "prod:start": "node ./dist/index.js",
     "build": "npm run prod:build",
     "start": "npm run prod:start"
   },
