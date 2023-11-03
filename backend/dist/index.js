@@ -7,25 +7,25 @@ const server_1 = require("@apollo/server");
 const express4_1 = require("@apollo/server/express4");
 const drainHttpServer_1 = require("@apollo/server/plugin/drainHttpServer");
 const express_1 = __importDefault(require("express"));
-const database_1 = require("./database/database");
+const index_1 = require("./database/index");
 const http_1 = __importDefault(require("http"));
 const cors_1 = __importDefault(require("cors"));
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
-const index_1 = __importDefault(require("./graphql/resolvers/index"));
+const index_2 = __importDefault(require("./graphql/resolvers/index"));
 const authMiddleware_1 = require("./util/authMiddleware");
 const typeDefs = fs_1.default.readFileSync(path_1.default.join(__dirname, 'graphql/schema/schema.graphql'), 'utf8');
 const app = (0, express_1.default)();
 const httpServer = http_1.default.createServer(app);
 const server = new server_1.ApolloServer({
     typeDefs,
-    resolvers: index_1.default,
+    resolvers: index_2.default,
     introspection: true,
     plugins: [(0, drainHttpServer_1.ApolloServerPluginDrainHttpServer)({ httpServer })],
 });
 const startServer = async () => {
     try {
-        await (0, database_1.initDb)();
+        await (0, index_1.initDb)();
         console.log('Database initialized');
         await server.start();
         app.use((0, cors_1.default)());

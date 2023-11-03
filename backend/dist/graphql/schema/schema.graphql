@@ -1,0 +1,81 @@
+type Recipe {
+  id: ID!
+  name: String!
+  ingredients: [String!]!
+  steps: [String!]!
+  prepTime: Int!
+  cookTime: Int!
+  cuisineType: String!
+  calories: Int!
+  imageUrl: String
+}
+
+type Query {
+  recipes: [Recipe!]!
+  recipe(id: ID!): Recipe!
+  users: [User!]!        
+  user(id: ID!): User!   
+}
+
+input RecipeInput {
+  name: String
+  ingredients: [String]
+  steps: [String]
+  prepTime: Int
+  cookTime: Int
+  cuisineType: String
+  calories: Int
+  imageUrl: String
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  password: String!
+  role: UserRole!
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  password: String!
+  role: UserRole!
+}
+
+type Mutation {
+  addRecipe(
+    name: String!
+    ingredients: [String!]!
+    steps: [String!]!
+    prepTime: Int!
+    cookTime: Int!
+    cuisineType: String!
+    calories: Int!
+    imageUrl: String
+  ): Recipe!
+
+  updateRecipe(
+    id: ID!
+    input: RecipeInput!
+  ): Recipe!
+
+  deleteRecipe(id: ID!): Recipe!
+
+  # New User mutations
+  addUser(
+    input: UserInput!
+  ): User!               
+  
+  updateUser(
+    id: ID!
+    input: UserInput!
+  ): User!               
+  
+  deleteUser(id: ID!): User!  
+}

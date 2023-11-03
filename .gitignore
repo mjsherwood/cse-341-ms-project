@@ -6,9 +6,9 @@ backend/node_modules/
 frontend/node_modules/
 
 # Build directories
-backend/dist/
-frontend/dist/
-dist/
+
+
+
 
 # Environment variables
 .env
