@@ -5,7 +5,7 @@
 ### Get a single recipe
 POST http://localhost:5127/graphql
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiI0NE9yc2doem5RREs2QTVUN1lUbUZFbTVOUEtzQVRCcUBjbGllbnRzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MTI3L2dyYXBocWwiLCJpYXQiOjE2OTg4ODgwODUsImV4cCI6MTY5ODk3NDQ4NSwiYXpwIjoiNDRPcnNnaHpuUURLNkE1VDdZVG1GRW01TlBLc0FUQnEiLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.XXGm7oM2a5fcmitUllQwQPuXuJcuTxoVegQoqRIzIuVMynr2uls1jQf7val6zJXdmS0FeZS9KBOe1UK4gbO5shdWX9qaHXPDka4VInylN5cReKqyblMG9jJkUPPmZ0TF-2gMC4VO5puYqk0vUuAczTbVfXCiTu8fMdw7RsKJ6jjZ-r0iB7XgBHFxjca_IHwmg4E3m75FXxgfvWCFpgqKsNKtqWkYCzj0eqxmHi4pPxUMonJntnEf82sXbG_oLEcFtJeXbhwtYZYIL3aNOrVCgaM6u_aLa_oxHwMChPjvAXNUIvnOdBIdrKXTgHKkeCV2f8DJON1M4ezbEz4NQdSbkw
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiI0NE9yc2doem5RREs2QTVUN1lUbUZFbTVOUEtzQVRCcUBjbGllbnRzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MTI3L2dyYXBocWwiLCJpYXQiOjE2OTg5ODE0OTIsImV4cCI6MTY5OTA2Nzg5MiwiYXpwIjoiNDRPcnNnaHpuUURLNkE1VDdZVG1GRW01TlBLc0FUQnEiLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.COp2fbT6YwgBXWkogXYNOp-cfB6bwJ1qtvsp2C3WVU4ciaRPwDRQaf7dWjiGimCQSzp1wEssYy1zJM-DA1FtNt7kSzV9-kYQjq9thll7tUuumemiMubcmdcHqsjknwchbx3y3wzaTXHbAzuuiRDSJKhuDRBhkgXzh7xFT_XHZinuydWE-hkFacvaCqCusNF7hPHGOjiicc71lltbvQzvX_WghRVvY6JsvaibxqJSG--hKY0cSAM-3DLXRIWWJjSVclQ6qA6EGOAc1_5mSEae4uz7NU8hXrJUINftFpnpah72TWOOnseeQZ359PIigkQ3KBeUNScTAiDTqHcgUHWGNw
 
 {
   "query": "{ recipe(id: \"6529e0aed3fb818c8bc06ad9\") { id name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
@@ -14,6 +14,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3
 ### Get all recipes
 POST http://localhost:5127/graphql
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiI0NE9yc2doem5RREs2QTVUN1lUbUZFbTVOUEtzQVRCcUBjbGllbnRzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MTI3L2dyYXBocWwiLCJpYXQiOjE2OTg5ODE0OTIsImV4cCI6MTY5OTA2Nzg5MiwiYXpwIjoiNDRPcnNnaHpuUURLNkE1VDdZVG1GRW01TlBLc0FUQnEiLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.COp2fbT6YwgBXWkogXYNOp-cfB6bwJ1qtvsp2C3WVU4ciaRPwDRQaf7dWjiGimCQSzp1wEssYy1zJM-DA1FtNt7kSzV9-kYQjq9thll7tUuumemiMubcmdcHqsjknwchbx3y3wzaTXHbAzuuiRDSJKhuDRBhkgXzh7xFT_XHZinuydWE-hkFacvaCqCusNF7hPHGOjiicc71lltbvQzvX_WghRVvY6JsvaibxqJSG--hKY0cSAM-3DLXRIWWJjSVclQ6qA6EGOAc1_5mSEae4uz7NU8hXrJUINftFpnpah72TWOOnseeQZ359PIigkQ3KBeUNScTAiDTqHcgUHWGNw
 
 {
   "query": "{ recipes { id name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
@@ -22,6 +23,7 @@ Content-Type: application/json
 ### Add a new recipe
 POST http://localhost:5127/graphql
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiI0NE9yc2doem5RREs2QTVUN1lUbUZFbTVOUEtzQVRCcUBjbGllbnRzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MTI3L2dyYXBocWwiLCJpYXQiOjE2OTg5ODE0OTIsImV4cCI6MTY5OTA2Nzg5MiwiYXpwIjoiNDRPcnNnaHpuUURLNkE1VDdZVG1GRW01TlBLc0FUQnEiLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.COp2fbT6YwgBXWkogXYNOp-cfB6bwJ1qtvsp2C3WVU4ciaRPwDRQaf7dWjiGimCQSzp1wEssYy1zJM-DA1FtNt7kSzV9-kYQjq9thll7tUuumemiMubcmdcHqsjknwchbx3y3wzaTXHbAzuuiRDSJKhuDRBhkgXzh7xFT_XHZinuydWE-hkFacvaCqCusNF7hPHGOjiicc71lltbvQzvX_WghRVvY6JsvaibxqJSG--hKY0cSAM-3DLXRIWWJjSVclQ6qA6EGOAc1_5mSEae4uz7NU8hXrJUINftFpnpah72TWOOnseeQZ359PIigkQ3KBeUNScTAiDTqHcgUHWGNw
 
 {
   "query": "mutation { addRecipe(name: \"Test14\", ingredients: [\"Flour\", \"Milk\", \"Eggs\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\") { id name } }"
@@ -30,14 +32,16 @@ Content-Type: application/json
 ### Update a recipe
 POST http://localhost:5127/graphql
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiI0NE9yc2doem5RREs2QTVUN1lUbUZFbTVOUEtzQVRCcUBjbGllbnRzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MTI3L2dyYXBocWwiLCJpYXQiOjE2OTg5ODE0OTIsImV4cCI6MTY5OTA2Nzg5MiwiYXpwIjoiNDRPcnNnaHpuUURLNkE1VDdZVG1GRW01TlBLc0FUQnEiLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.COp2fbT6YwgBXWkogXYNOp-cfB6bwJ1qtvsp2C3WVU4ciaRPwDRQaf7dWjiGimCQSzp1wEssYy1zJM-DA1FtNt7kSzV9-kYQjq9thll7tUuumemiMubcmdcHqsjknwchbx3y3wzaTXHbAzuuiRDSJKhuDRBhkgXzh7xFT_XHZinuydWE-hkFacvaCqCusNF7hPHGOjiicc71lltbvQzvX_WghRVvY6JsvaibxqJSG--hKY0cSAM-3DLXRIWWJjSVclQ6qA6EGOAc1_5mSEae4uz7NU8hXrJUINftFpnpah72TWOOnseeQZ359PIigkQ3KBeUNScTAiDTqHcgUHWGNw
 
 {
-  "query": "mutation { updateRecipe(id: \"653463b522a5d3aa1d9f3205\", input: {name: \"Ice Cream Sausage4\", ingredients: [\"Mud\", \"Water\", \"meat\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\"}) { id name } }"
+  "query": "mutation { updateRecipe(id: \"653463b522a5d3aa1d9f3205\", input: {name: \"Ice Cream Sausage4\", ingredients: [\"Mud2\", \"Water\", \"meat\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\"}) { id name } }"
 }
 
 ### Delete a recipe
 POST http://localhost:5127/graphql
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiI0NE9yc2doem5RREs2QTVUN1lUbUZFbTVOUEtzQVRCcUBjbGllbnRzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MTI3L2dyYXBocWwiLCJpYXQiOjE2OTg5ODE0OTIsImV4cCI6MTY5OTA2Nzg5MiwiYXpwIjoiNDRPcnNnaHpuUURLNkE1VDdZVG1GRW01TlBLc0FUQnEiLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.COp2fbT6YwgBXWkogXYNOp-cfB6bwJ1qtvsp2C3WVU4ciaRPwDRQaf7dWjiGimCQSzp1wEssYy1zJM-DA1FtNt7kSzV9-kYQjq9thll7tUuumemiMubcmdcHqsjknwchbx3y3wzaTXHbAzuuiRDSJKhuDRBhkgXzh7xFT_XHZinuydWE-hkFacvaCqCusNF7hPHGOjiicc71lltbvQzvX_WghRVvY6JsvaibxqJSG--hKY0cSAM-3DLXRIWWJjSVclQ6qA6EGOAc1_5mSEae4uz7NU8hXrJUINftFpnpah72TWOOnseeQZ359PIigkQ3KBeUNScTAiDTqHcgUHWGNw
 
 {
   "query": "mutation { deleteRecipe(id: \"65348486002201b5f9e80b28\") { id name } }"
@@ -48,6 +52,7 @@ Content-Type: application/json
 ### Get a single recipe
 POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJKbkN4WkNoNHJ3RGdMb0YwSkZPMWUwWnNDcUlJajEzS0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9jc2UtMzQxLW1zLXByb2plY3Qub25yZW5kZXIuY29tL2dyYXBocWwiLCJpYXQiOjE2OTg5ODA4MjgsImV4cCI6MTY5OTA2NzIyOCwiYXpwIjoiSm5DeFpDaDRyd0RnTG9GMEpGTzFlMFpzQ3FJSWoxM0siLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.dvUV7DBuNN6oCx6HYo7P_gCPNzJ5TBNi-UULnNL2W-XcAsBGpnaqqevF1kJhJSVpcdNOuZ4QGXexlR7iKS0ASiaC2FBvOSs0s4gLFCVj6e3-Cl3uIn1VPlAVhCgoKbzQOdW6v9yC-_xlmIec_BwzzUnqBahVMU7gKlozInYUDzzeDHqLBvHc63AQKlNjKs4jfcfUsIUYH_sZyo81GNdfwQHkXal7YpVhrk8LIsbRB7_r6ChuHG7Cq6KEYxvhskoylKqO5gsa5dggYW_xxXvWbfDLQUiOBuWxwzxDzvE2laaR_GZfVAPPH9thXp4oroI2eVlArJ_X448-DfzvKPy4vg
 
 {
   "query": "{ recipe(id: \"6529e0aed3fb818c8bc06ad9\") { id name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
@@ -56,6 +61,7 @@ Content-Type: application/json
 ### Get all recipes
 POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJKbkN4WkNoNHJ3RGdMb0YwSkZPMWUwWnNDcUlJajEzS0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9jc2UtMzQxLW1zLXByb2plY3Qub25yZW5kZXIuY29tL2dyYXBocWwiLCJpYXQiOjE2OTg5ODA4MjgsImV4cCI6MTY5OTA2NzIyOCwiYXpwIjoiSm5DeFpDaDRyd0RnTG9GMEpGTzFlMFpzQ3FJSWoxM0siLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.dvUV7DBuNN6oCx6HYo7P_gCPNzJ5TBNi-UULnNL2W-XcAsBGpnaqqevF1kJhJSVpcdNOuZ4QGXexlR7iKS0ASiaC2FBvOSs0s4gLFCVj6e3-Cl3uIn1VPlAVhCgoKbzQOdW6v9yC-_xlmIec_BwzzUnqBahVMU7gKlozInYUDzzeDHqLBvHc63AQKlNjKs4jfcfUsIUYH_sZyo81GNdfwQHkXal7YpVhrk8LIsbRB7_r6ChuHG7Cq6KEYxvhskoylKqO5gsa5dggYW_xxXvWbfDLQUiOBuWxwzxDzvE2laaR_GZfVAPPH9thXp4oroI2eVlArJ_X448-DfzvKPy4vg
 
 {
   "query": "{ recipes { id name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"
@@ -64,6 +70,7 @@ Content-Type: application/json
 ### Add a new recipe
 POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJKbkN4WkNoNHJ3RGdMb0YwSkZPMWUwWnNDcUlJajEzS0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9jc2UtMzQxLW1zLXByb2plY3Qub25yZW5kZXIuY29tL2dyYXBocWwiLCJpYXQiOjE2OTg5ODA4MjgsImV4cCI6MTY5OTA2NzIyOCwiYXpwIjoiSm5DeFpDaDRyd0RnTG9GMEpGTzFlMFpzQ3FJSWoxM0siLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.dvUV7DBuNN6oCx6HYo7P_gCPNzJ5TBNi-UULnNL2W-XcAsBGpnaqqevF1kJhJSVpcdNOuZ4QGXexlR7iKS0ASiaC2FBvOSs0s4gLFCVj6e3-Cl3uIn1VPlAVhCgoKbzQOdW6v9yC-_xlmIec_BwzzUnqBahVMU7gKlozInYUDzzeDHqLBvHc63AQKlNjKs4jfcfUsIUYH_sZyo81GNdfwQHkXal7YpVhrk8LIsbRB7_r6ChuHG7Cq6KEYxvhskoylKqO5gsa5dggYW_xxXvWbfDLQUiOBuWxwzxDzvE2laaR_GZfVAPPH9thXp4oroI2eVlArJ_X448-DfzvKPy4vg
 
 {
   "query": "mutation { addRecipe(name: \"Test15\", ingredients: [\"Flour\", \"Milk\", \"Eggs\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\") { id name } }"
@@ -72,6 +79,7 @@ Content-Type: application/json
 ### Update a recipe
 POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJKbkN4WkNoNHJ3RGdMb0YwSkZPMWUwWnNDcUlJajEzS0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9jc2UtMzQxLW1zLXByb2plY3Qub25yZW5kZXIuY29tL2dyYXBocWwiLCJpYXQiOjE2OTg5ODA4MjgsImV4cCI6MTY5OTA2NzIyOCwiYXpwIjoiSm5DeFpDaDRyd0RnTG9GMEpGTzFlMFpzQ3FJSWoxM0siLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.dvUV7DBuNN6oCx6HYo7P_gCPNzJ5TBNi-UULnNL2W-XcAsBGpnaqqevF1kJhJSVpcdNOuZ4QGXexlR7iKS0ASiaC2FBvOSs0s4gLFCVj6e3-Cl3uIn1VPlAVhCgoKbzQOdW6v9yC-_xlmIec_BwzzUnqBahVMU7gKlozInYUDzzeDHqLBvHc63AQKlNjKs4jfcfUsIUYH_sZyo81GNdfwQHkXal7YpVhrk8LIsbRB7_r6ChuHG7Cq6KEYxvhskoylKqO5gsa5dggYW_xxXvWbfDLQUiOBuWxwzxDzvE2laaR_GZfVAPPH9thXp4oroI2eVlArJ_X448-DfzvKPy4vg
 
 {
   "query": "mutation { updateRecipe(id: \"653463b522a5d3aa1d9f3205\", input: {name: \"Pancakes 4\", ingredients: [\"Mud\", \"Water\", \"meat\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\"}) { id name } }"
@@ -80,6 +88,7 @@ Content-Type: application/json
 ### Delete a recipe
 POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJKbkN4WkNoNHJ3RGdMb0YwSkZPMWUwWnNDcUlJajEzS0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9jc2UtMzQxLW1zLXByb2plY3Qub25yZW5kZXIuY29tL2dyYXBocWwiLCJpYXQiOjE2OTg5ODA4MjgsImV4cCI6MTY5OTA2NzIyOCwiYXpwIjoiSm5DeFpDaDRyd0RnTG9GMEpGTzFlMFpzQ3FJSWoxM0siLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.dvUV7DBuNN6oCx6HYo7P_gCPNzJ5TBNi-UULnNL2W-XcAsBGpnaqqevF1kJhJSVpcdNOuZ4QGXexlR7iKS0ASiaC2FBvOSs0s4gLFCVj6e3-Cl3uIn1VPlAVhCgoKbzQOdW6v9yC-_xlmIec_BwzzUnqBahVMU7gKlozInYUDzzeDHqLBvHc63AQKlNjKs4jfcfUsIUYH_sZyo81GNdfwQHkXal7YpVhrk8LIsbRB7_r6ChuHG7Cq6KEYxvhskoylKqO5gsa5dggYW_xxXvWbfDLQUiOBuWxwzxDzvE2laaR_GZfVAPPH9thXp4oroI2eVlArJ_X448-DfzvKPy4vg
 
 {
   "query": "mutation { deleteRecipe(id: \"6534b1667078ed4debc966d3\") { id name } }"
