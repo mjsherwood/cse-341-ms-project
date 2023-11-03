@@ -1,4 +1,4 @@
-import { getDb } from '../../database/database';
+import { getDb } from '../../database';
 import { ObjectId } from 'mongodb';
 import { RecipeInputSchema } from '../../util/validation';
 

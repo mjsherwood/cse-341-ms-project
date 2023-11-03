@@ -2,7 +2,7 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import express, { Request, Response, NextFunction } from 'express';
-import { initDb } from './database/database.js';
+import { initDb } from './database/index';
 import http from 'http';
 import cors from 'cors';
 import fs from 'fs';
