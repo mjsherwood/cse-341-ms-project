@@ -7,6 +7,7 @@ const userResolvers_1 = __importDefault(require("./userResolvers"));
 const recipeResolvers_1 = __importDefault(require("./recipeResolvers"));
 const checkAuth = (resolver) => (parent, args, context, info) => {
     if (!context.user) {
+        // Optionally, you could also check `context.token` if needed
         throw new Error('You must be logged in to do this');
     }
     return resolver(parent, args, context, info);

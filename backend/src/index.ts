@@ -22,17 +22,17 @@ const typeDefs = fs.readFileSync(path.join(__dirname, 'graphql/schema/schema.gra
 const app = express();
 const httpServer = http.createServer(app);
 
-// JWT Middleware
-app.use(async (req: Request, res: Response, next: NextFunction) => {
-    const token = req.headers.authorization || '';
-    const authResult = await isTokenValid(token);
-    if (authResult.error) {
-        res.status(401).send({ error: 'You must be logged in' });
-        return;
-    }
-    req.user = authResult.decoded;
-    next();
-});
+// // JWT Middleware
+// app.use(async (req: Request, res: Response, next: NextFunction) => {
+//     const token = req.headers.authorization || '';
+//     const authResult = await isTokenValid(token);
+//     if (authResult.error) {
+//         res.status(401).send({ error: 'You must be logged in' });
+//         return;
+//     }
+//     req.user = authResult.decoded;
+//     next();
+// });
 
 const server = new ApolloServer({
   typeDefs,
@@ -41,10 +41,8 @@ const server = new ApolloServer({
   context: async ({ req }: { req: Request }) => {
     const token = req.headers.authorization || '';
     const authResult = await isTokenValid(token);
-    if (authResult.error) {
-      throw new Error('You must be logged in');
-    }
-    return { user: authResult.decoded };
+    // Now just pass the token and decoded user (if any) to the resolvers
+    return { token, user: authResult.error ? null : authResult.decoded };
   },
 } as any);
 

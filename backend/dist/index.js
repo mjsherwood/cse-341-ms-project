@@ -16,17 +16,17 @@ const authValidation_1 = require("./util/authValidation");
 const typeDefs = fs_1.default.readFileSync(path_1.default.join(__dirname, 'graphql/schema/schema.graphql'), 'utf8');
 const app = (0, express_1.default)();
 const httpServer = http_1.default.createServer(app);
-// JWT Middleware
-app.use(async (req, res, next) => {
-    const token = req.headers.authorization || '';
-    const authResult = await (0, authValidation_1.isTokenValid)(token);
-    if (authResult.error) {
-        res.status(401).send({ error: 'You must be logged in' });
-        return;
-    }
-    req.user = authResult.decoded;
-    next();
-});
+// // JWT Middleware
+// app.use(async (req: Request, res: Response, next: NextFunction) => {
+//     const token = req.headers.authorization || '';
+//     const authResult = await isTokenValid(token);
+//     if (authResult.error) {
+//         res.status(401).send({ error: 'You must be logged in' });
+//         return;
+//     }
+//     req.user = authResult.decoded;
+//     next();
+// });
 const server = new server_1.ApolloServer({
     typeDefs,
     resolvers: index_2.default,
@@ -34,10 +34,8 @@ const server = new server_1.ApolloServer({
     context: async ({ req }) => {
         const token = req.headers.authorization || '';
         const authResult = await (0, authValidation_1.isTokenValid)(token);
-        if (authResult.error) {
-            throw new Error('You must be logged in');
-        }
-        return { user: authResult.decoded };
+        // Now just pass the token and decoded user (if any) to the resolvers
+        return { token, user: authResult.error ? null : authResult.decoded };
     },
 });
 const startServer = async () => {

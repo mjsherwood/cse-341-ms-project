@@ -15,6 +15,7 @@ const checkAuth = (resolver: ResolverFunction): ResolverFunction => (
   info
 ) => {
   if (!context.user) {
+    // Optionally, you could also check `context.token` if needed
     throw new Error('You must be logged in to do this');
   }
   return resolver(parent, args, context, info);
