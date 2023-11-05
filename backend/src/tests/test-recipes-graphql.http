@@ -33,6 +33,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3
 POST http://localhost:5127/graphql
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJUdDJSQ1FiTlpQdmluaTJDYlloc0haM3pJSm1vakViUEBjbGllbnRzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MTI3L2dyYXBocWwiLCJpYXQiOjE2OTkxNDI5OTMsImV4cCI6MTY5OTIyOTM5MywiYXpwIjoiVHQyUkNRYk5aUHZpbmkyQ2JZaHNIWjN6SUptb2pFYlAiLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.Zic6X05YN4z2zJJ1MQvDvJDcDrTorrdej_vU-Lqr93JmrpNl4I-9n1qzYJLmzowxtOTiyLNjOOkLM-0laJcoEl8H5HmW7WK_aNEUredVxb2xIdB3LSMFJwZJP8YwQhTZkjxdvR0sNYK1yB2CMRnpPxER16CtOovEFL7vtyfkgdqHx3N_RlcApa6IQkVnunV8xVHtzzKm_MjpKC5fOjN7hrIHqkVM3wsDq05W0vE_e2fWNR8kuiRvgB08CToAO625-Pq-ZRbQ327h6cnhC3BCtrrw5AphLhVgeG0lw_Z1sibajGsjiKQLQxxzy7fXut0NNeRaocN3UWBKHZH1lxtC5Q
+
 {
   "query": "mutation { updateRecipe(id: \"6546c4af9f6efde0d8e00be6\", input: {name: \"Ice Cream Sausage4\", ingredients: [\"Mud2\", \"Water\", \"meat\"], steps: [\"Mix ingredients\", \"Cook on pan\"], prepTime: 10, cookTime: 5, cuisineType: \"American\", calories: 200, imageUrl: \"https://example.com/pancakes.jpg\"}) { id name } }"
 }
@@ -51,7 +52,6 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3
 ### Get a single recipe
 POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJKbkN4WkNoNHJ3RGdMb0YwSkZPMWUwWnNDcUlJajEzS0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9jc2UtMzQxLW1zLXByb2plY3Qub25yZW5kZXIuY29tL2dyYXBocWwiLCJpYXQiOjE2OTg5ODA4MjgsImV4cCI6MTY5OTA2NzIyOCwiYXpwIjoiSm5DeFpDaDRyd0RnTG9GMEpGTzFlMFpzQ3FJSWoxM0siLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.dvUV7DBuNN6oCx6HYo7P_gCPNzJ5TBNi-UULnNL2W-XcAsBGpnaqqevF1kJhJSVpcdNOuZ4QGXexlR7iKS0ASiaC2FBvOSs0s4gLFCVj6e3-Cl3uIn1VPlAVhCgoKbzQOdW6v9yC-_xlmIec_BwzzUnqBahVMU7gKlozInYUDzzeDHqLBvHc63AQKlNjKs4jfcfUsIUYH_sZyo81GNdfwQHkXal7YpVhrk8LIsbRB7_r6ChuHG7Cq6KEYxvhskoylKqO5gsa5dggYW_xxXvWbfDLQUiOBuWxwzxDzvE2laaR_GZfVAPPH9thXp4oroI2eVlArJ_X448-DfzvKPy4vg
 
 {
   "query": "{ recipe(id: \"6529e0aed3fb818c8bc06ad9\") { id name ingredients steps prepTime cookTime cuisineType calories imageUrl } }"

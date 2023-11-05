@@ -23,6 +23,7 @@ Content-Type: application/json
 ### Add a new user
 POST http://localhost:5127/graphql
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiI0NE9yc2doem5RREs2QTVUN1lUbUZFbTVOUEtzQVRCcUBjbGllbnRzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MTI3L2dyYXBocWwiLCJpYXQiOjE2OTkxMzM3NzEsImV4cCI6MTY5OTIyMDE3MSwiYXpwIjoiNDRPcnNnaHpuUURLNkE1VDdZVG1GRW01TlBLc0FUQnEiLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.LGb___A1B-nEIIO8E9mUB-n08nFfGYeAft-o8ZYYoxvllJ6_13Psj2Oum43IgxShJau407qUVyxgUye_On0t7D1WUKF9JQkFmgcuYBnglKJu5-OU3lWHXbx1L8GLynivdNNf3aqrj3pmJuoGDyvllTM77qxRUzmfONifTB5J80dz-5sWq7hNt87xPCkzixIu5-NQuAwFCqoQ-2R7jm0XQCM8PJ8zMd-mAFPY6gccvrFE96OHI6r0xA0piEsn8PdldM9fagG1aTwMNKjulSXO7ptkm96TXPd-BU45cF2ujGan5BGW48RaYeoeJbyzE3Quf3K7Cp0v4kAMzARD2C3DVg
 
 {
   "query": "mutation { addUser(input: {username: \"newuser\", email: \"newuser@example.com\", password: \"password\", role: USER }) { id username email role } }"
@@ -31,6 +32,7 @@ Content-Type: application/json
 ### Update a user
 POST http://localhost:5127/graphql
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiI0NE9yc2doem5RREs2QTVUN1lUbUZFbTVOUEtzQVRCcUBjbGllbnRzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MTI3L2dyYXBocWwiLCJpYXQiOjE2OTkxMzM3NzEsImV4cCI6MTY5OTIyMDE3MSwiYXpwIjoiNDRPcnNnaHpuUURLNkE1VDdZVG1GRW01TlBLc0FUQnEiLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.LGb___A1B-nEIIO8E9mUB-n08nFfGYeAft-o8ZYYoxvllJ6_13Psj2Oum43IgxShJau407qUVyxgUye_On0t7D1WUKF9JQkFmgcuYBnglKJu5-OU3lWHXbx1L8GLynivdNNf3aqrj3pmJuoGDyvllTM77qxRUzmfONifTB5J80dz-5sWq7hNt87xPCkzixIu5-NQuAwFCqoQ-2R7jm0XQCM8PJ8zMd-mAFPY6gccvrFE96OHI6r0xA0piEsn8PdldM9fagG1aTwMNKjulSXO7ptkm96TXPd-BU45cF2ujGan5BGW48RaYeoeJbyzE3Quf3K7Cp0v4kAMzARD2C3DVg
 
 {
   "query": "mutation { updateUser(id: \"65334ff1206511a0c289ed27\", input: {username: \"updateduser11\", email: \"updateduser@example.com\", password: \"newpassword\", role: ADMIN}) { id username email role } }"
@@ -39,6 +41,7 @@ Content-Type: application/json
 ### Delete a user
 POST http://localhost:5127/graphql
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiI0NE9yc2doem5RREs2QTVUN1lUbUZFbTVOUEtzQVRCcUBjbGllbnRzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MTI3L2dyYXBocWwiLCJpYXQiOjE2OTkxMzM3NzEsImV4cCI6MTY5OTIyMDE3MSwiYXpwIjoiNDRPcnNnaHpuUURLNkE1VDdZVG1GRW01TlBLc0FUQnEiLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.LGb___A1B-nEIIO8E9mUB-n08nFfGYeAft-o8ZYYoxvllJ6_13Psj2Oum43IgxShJau407qUVyxgUye_On0t7D1WUKF9JQkFmgcuYBnglKJu5-OU3lWHXbx1L8GLynivdNNf3aqrj3pmJuoGDyvllTM77qxRUzmfONifTB5J80dz-5sWq7hNt87xPCkzixIu5-NQuAwFCqoQ-2R7jm0XQCM8PJ8zMd-mAFPY6gccvrFE96OHI6r0xA0piEsn8PdldM9fagG1aTwMNKjulSXO7ptkm96TXPd-BU45cF2ujGan5BGW48RaYeoeJbyzE3Quf3K7Cp0v4kAMzARD2C3DVg
 
 {
   "query": "mutation { deleteUser(id: \"65349691e3747bfcea17fbc5\") { id username email role } }"
@@ -65,6 +68,7 @@ Content-Type: application/json
 ### Add a new user
 POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJKbkN4WkNoNHJ3RGdMb0YwSkZPMWUwWnNDcUlJajEzS0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9jc2UtMzQxLW1zLXByb2plY3Qub25yZW5kZXIuY29tL2dyYXBocWwiLCJpYXQiOjE2OTkxMzY1NTEsImV4cCI6MTY5OTIyMjk1MSwiYXpwIjoiSm5DeFpDaDRyd0RnTG9GMEpGTzFlMFpzQ3FJSWoxM0siLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.Ryo5c2eW6JVhVO39EOHOre_hmVWQX2jis3TL20SoBpUYoLYeqj3-rkZlfFegyXlnfQHMPdYJj2KZ1xt8qCFOUY7UH3s8SzdKjNbzpXJ5NWdZ2knMNPxID-mBTzpWeVegfOjp_eN-K0uDsZzM2HCHbaPbaKGKcrvHDCfqCs785T-PeedDqm6T-we5G2tST_QuHobiLl1B85bRS3SwQtCk55Pi-JmL-jjtENoymJMdoGVLfBQqO8pgB4LBO6y72ZgLftI1CFC-T5F2xTIkD-O7_0GpY8rEm1IpLChCcmFAwrxDfr8vXvE9H4l1qngDnWNDm-rDJICeZgvyxwytZ1OkSg
 
 {
   "query": "mutation { addUser(input: {username: \"newuser\", email: \"newuser@example.com\", password: \"password\", role: USER}) { id username email role } }"
@@ -73,6 +77,7 @@ Content-Type: application/json
 ### Update a user
 POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJKbkN4WkNoNHJ3RGdMb0YwSkZPMWUwWnNDcUlJajEzS0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9jc2UtMzQxLW1zLXByb2plY3Qub25yZW5kZXIuY29tL2dyYXBocWwiLCJpYXQiOjE2OTkxMzY1NTEsImV4cCI6MTY5OTIyMjk1MSwiYXpwIjoiSm5DeFpDaDRyd0RnTG9GMEpGTzFlMFpzQ3FJSWoxM0siLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.Ryo5c2eW6JVhVO39EOHOre_hmVWQX2jis3TL20SoBpUYoLYeqj3-rkZlfFegyXlnfQHMPdYJj2KZ1xt8qCFOUY7UH3s8SzdKjNbzpXJ5NWdZ2knMNPxID-mBTzpWeVegfOjp_eN-K0uDsZzM2HCHbaPbaKGKcrvHDCfqCs785T-PeedDqm6T-we5G2tST_QuHobiLl1B85bRS3SwQtCk55Pi-JmL-jjtENoymJMdoGVLfBQqO8pgB4LBO6y72ZgLftI1CFC-T5F2xTIkD-O7_0GpY8rEm1IpLChCcmFAwrxDfr8vXvE9H4l1qngDnWNDm-rDJICeZgvyxwytZ1OkSg
 
 {
   "query": "mutation { updateUser(id: \"653578f4b6006218d4050379\", input: {username: \"updateduser2\", email: \"updateduser@example.com\", password: \"newpassword\", role: ADMIN}) { id username email role } }"
@@ -81,6 +86,7 @@ Content-Type: application/json
 ### Delete a user
 POST https://cse-341-ms-project.onrender.com/graphql
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjdfV1o3dkU3Q3lLVDQyTGJ0TWNuLSJ9.eyJpc3MiOiJodHRwczovL2Rldi1oZGljM2o4cnhxc3EzZXZrLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJKbkN4WkNoNHJ3RGdMb0YwSkZPMWUwWnNDcUlJajEzS0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9jc2UtMzQxLW1zLXByb2plY3Qub25yZW5kZXIuY29tL2dyYXBocWwiLCJpYXQiOjE2OTkxMzY1NTEsImV4cCI6MTY5OTIyMjk1MSwiYXpwIjoiSm5DeFpDaDRyd0RnTG9GMEpGTzFlMFpzQ3FJSWoxM0siLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.Ryo5c2eW6JVhVO39EOHOre_hmVWQX2jis3TL20SoBpUYoLYeqj3-rkZlfFegyXlnfQHMPdYJj2KZ1xt8qCFOUY7UH3s8SzdKjNbzpXJ5NWdZ2knMNPxID-mBTzpWeVegfOjp_eN-K0uDsZzM2HCHbaPbaKGKcrvHDCfqCs785T-PeedDqm6T-we5G2tST_QuHobiLl1B85bRS3SwQtCk55Pi-JmL-jjtENoymJMdoGVLfBQqO8pgB4LBO6y72ZgLftI1CFC-T5F2xTIkD-O7_0GpY8rEm1IpLChCcmFAwrxDfr8vXvE9H4l1qngDnWNDm-rDJICeZgvyxwytZ1OkSg
 
 {
   "query": "mutation { deleteUser(id: \"someUserId\") { id username email role } }"
